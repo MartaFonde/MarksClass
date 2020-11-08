@@ -36,7 +36,7 @@ namespace MarksClass
                 Console.WriteLine("8. Tabla sólo de aprobados");
                 Console.WriteLine("9. Visualizar tabla completa de notas");
                 Console.WriteLine("10. Salir");
-                if (valido = FuncionesInterfaz.PedirDato(out opcion, 1, 10) && alum.Length > 0)
+                if (valido = MuestraDatos.PedirDato(out opcion, 1, 10) && alum.Length > 0)
                 {
                     op = Convert.ToInt32(opcion);
                     switch (op)
@@ -46,7 +46,7 @@ namespace MarksClass
                             break;
                         case 2:
                             Console.WriteLine("Introduce el ID del alumno: ");
-                            if (FuncionesInterfaz.PedirDato(out id, 0, alum.Length - 1))
+                            if (MuestraDatos.PedirDato(out id, 0, alum.Length - 1))
                             {
                                 ind = Convert.ToInt32(id);
                                 Console.WriteLine("Alumno: {0}\nMedia: {1:0.00}", alum[ind], aula.MediaAlumno(ind));
@@ -54,7 +54,7 @@ namespace MarksClass
                             break;
                         case 3:
                             Console.WriteLine("Introduce el ID de la asignatura: ");
-                            if (FuncionesInterfaz.PedirDato(out id, 0, numAsig - 1))
+                            if (MuestraDatos.PedirDato(out id, 0, numAsig - 1))
                             {
                                 ind = Convert.ToInt32(id);
                                 Console.WriteLine("Asignatura: {0}\nMedia: {1:0.00}", Enum.GetName(typeof(Asignaturas), ind), aula.MediaAsignatura(ind));
@@ -62,35 +62,35 @@ namespace MarksClass
                             break;
                         case 4:
                             Console.WriteLine("Introduce el ID del alumno: ");
-                            if (FuncionesInterfaz.PedirDato(out id, 0, alum.Length - 1))
+                            if (MuestraDatos.PedirDato(out id, 0, alum.Length - 1))
                             {
-                                FuncionesInterfaz.TablaNotas(aula, alum, numAsig, posAlum: Convert.ToInt32(id));
+                                MuestraDatos.NotasAlumno(aula, Convert.ToInt32(id));
                             }
                             break;
                         case 5:
                             Console.WriteLine("Introduce el ID de la asignatura: ");
-                            if (FuncionesInterfaz.PedirDato(out id, 0, numAsig - 1))
+                            if (MuestraDatos.PedirDato(out id, 0, numAsig - 1))
                             {
-                                FuncionesInterfaz.TablaNotas(aula, alum, numAsig, posAsig: Convert.ToInt32(id));
+                                MuestraDatos.NotasAsignatura(aula, Convert.ToInt32(id));
                             }
                             break;
                         case 6:
                             Console.WriteLine("Introduce el ID del alumno: ");
-                            if (FuncionesInterfaz.PedirDato(out id, 0, alum.Length - 1))
+                            if (MuestraDatos.PedirDato(out id, 0, alum.Length - 1))
                             {
-                                int alumno = Convert.ToInt32(id);
+                                int alu = Convert.ToInt32(id);
                                 Console.WriteLine("Introduce el ID de la asignatura: ");
-                                if (FuncionesInterfaz.PedirDato(out id, 0, numAsig - 1))
+                                if (MuestraDatos.PedirDato(out id, 0, numAsig - 1))
                                 {
                                     int asig = Convert.ToInt32(id);
-                                    FuncionesInterfaz.TablaNotas(aula, alum, numAsig, alumno, asig);
-                                    //Console.WriteLine("Nota: {0}", aula[alumno, asig]);
+                                    Console.Write("{0, 24} | {1,2}. {2,11} |\n", " ", asig, Enum.GetName(typeof(Asignaturas), asig));
+                                    Console.Write("{0,2}. {1, 20} | {2,15} |\n", alu, alum[alu], aula[alu, asig]);
                                 }
                             }
                             break;
                         case 7:
                             Console.WriteLine("Introduce el ID del alumno: ");
-                            if (FuncionesInterfaz.PedirDato(out id, 0, alum.Length - 1))
+                            if (MuestraDatos.PedirDato(out id, 0, alum.Length - 1))
                             {
                                 int min = 10;
                                 int max = 0;
@@ -100,10 +100,10 @@ namespace MarksClass
                             }
                             break;
                         case 8:
-                            FuncionesInterfaz.TablaAprobados(aula, alum, numAsig, aula.Aprobados());
+                            MuestraDatos.TablaAprobados(aula);
                             break;
                         case 9:
-                            FuncionesInterfaz.TablaNotas(aula, alum, numAsig);
+                            MuestraDatos.Tabla(aula);
                             break;
                         case 10:
                             Console.WriteLine("Abur");
@@ -111,7 +111,6 @@ namespace MarksClass
                     }
                     Console.WriteLine();
                 }
-                //Console.WriteLine();                                
             } while (op != 10 || !valido);
         }
     }

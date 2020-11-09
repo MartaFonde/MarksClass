@@ -83,8 +83,7 @@ namespace MarksClass
                                 if (MuestraDatos.PedirDato(out id, 0, numAsig - 1))
                                 {
                                     int asig = Convert.ToInt32(id);
-                                    Console.Write("{0, 24} | {1,2}. {2,11} |\n", " ", asig, Enum.GetName(typeof(Asignaturas), asig));
-                                    Console.Write("{0,2}. {1, 20} | {2,15} |\n", alu, alum[alu], aula[alu, asig]);
+                                    MuestraDatos.NotasAsigAlumno(aula, alu, asig);
                                 }
                             }
                             break;

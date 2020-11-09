@@ -111,10 +111,10 @@ namespace MarksClass
             }
         }
 
-        public static void NotasAsigAlumno(Aula a, int alu, int asig)
+        public static void NotasAsigAlumno(Aula a, int alum, int asig)
         {
             Console.Write("{0, 24} | {1,2}. {2,11} |\n", " ", asig, Enum.GetName(typeof(Asignaturas), asig));
-            Console.Write("{0,2}. {1, 20} | {2,15} |\n", alu, alum[alu], aula[alu, asig]);
+            Console.Write("{0,2}. {1, 20} | {2,15} |\n", alum, a.alumnos[alum], a[alum, asig]);
         }
 
         //public static void TablaNotas(Aula a, string[] alumnos, int numAsig, int posAlum = -1, int posAsig = -1)
